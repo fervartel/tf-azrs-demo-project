@@ -21,5 +21,5 @@ module "dev-vn" {
     vn_name = "tf-vn-dev"
     location = "${azurerm_resource_group.tf-res-grp.location}"
     address_space    = "192.168.1.0/24"
-    subnet_cidr_pub = ["192.168.1.0/26", "192.168.1.64/26"]
+    subnet_cidr = ["192.168.1.0/26", "192.168.1.64/26"]
 }
