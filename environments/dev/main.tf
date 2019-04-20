@@ -15,11 +15,19 @@ resource "azurerm_resource_group" "tf-res-grp" {
 }
 
 module "dev-vn" {
-    source      = "../../../tf-modules/azure-virtual-network"
+    source = "../../../tf-modules/azure-virtual-network"
     
     resource_group_name = "${azurerm_resource_group.tf-res-grp.name}"
-    vn_name = "tf-vn-dev"
-    location = "${azurerm_resource_group.tf-res-grp.location}"
-    address_space    = "192.168.1.0/24"
-    subnet_cidr = ["192.168.1.0/26", "192.168.1.64/26"]
+    vn_name             = "tf-vn-dev"
+    location            = "${azurerm_resource_group.tf-res-grp.location}"
+    address_space       = "192.168.1.0/24"
+    subnet_cidr         = ["192.168.1.0/26", "192.168.1.64/26"]
+}
+
+module "dev-vmss" {
+    source = "../../../tf-modules/azure-scale-set"
+    
+    resource_group_name = "${azurerm_resource_group.tf-res-grp.name}"
+    location            = "${azurerm_resource_group.tf-res-grp.location}"
+    subnet              = "${module.dev-vn.subnets[0]}"
 }

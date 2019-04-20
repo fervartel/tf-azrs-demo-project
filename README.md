@@ -1,10 +1,20 @@
-# Terraform template for Azure Virtual Network
+# Terraform template for Azure Virtual Network, ScaleSet, Load Balancer, SSH Jumpbox
+
+DISCLAIMER: All credits goes to Microsoft Docs:
+
+This is the full configuration from https://docs.microsoft.com/en-us/azure/terraform/terraform-create-vm-scaleset-network-disks-hcl adapted to my own personal needs
+
+See above guide for additional information.
 
 ## Objectives
-The objective of this project is to demostrate how to use Terraform modules with Azure for creating:
+The objective of this project is to demostrate how to use Terraform modules with Azure to create:
 
 - Virtual Network
 - 2 Subnets
+- Azure ScaleSet (2 instances)
+- Custom Data to install nginx for LB testing purposes
+- Azure LB to access ScaleSet instance
+- Jumpbox to SSH instances in ScaleSet
 
 ## Requirements
 
